@@ -18,6 +18,7 @@ BuildRequires:	fonttools
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
 Obsoletes:	liberation-fonts-ttf
+Obsoletes:	fonts-TTF-RedHat-liberation
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
