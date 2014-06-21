@@ -1,17 +1,16 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation1
-Version:	1.07.3
+Version:	1.07.4
 Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
 Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	2b0ab5b0ecf00409d2b92740d29421b8
+# Source0-md5:	29e1482c6e568503138f7420597e635d
 Source1:	liberation-fonts-mono.conf
 Source2:	liberation-fonts-sans.conf
 Source3:	liberation-fonts-serif.conf
 Source4:	liberation-fonts-narrow.conf
-Patch0:		liberation-fonts-bug-715309.patch
 URL:		https://fedorahosted.org/liberation-fonts/
 BuildRequires:	fontforge >= 20090923
 BuildRequires:	fonttools
@@ -46,7 +45,6 @@ Bitstream Vera Sans Mono).
 
 %prep
 %setup -q -n liberation-fonts-%{version}
-%patch0 -p1
 
 %build
 %{__make}
