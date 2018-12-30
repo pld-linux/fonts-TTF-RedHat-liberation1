@@ -1,23 +1,23 @@
 Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation1
-Version:	1.07.4
+Version:	1.07.5
 Release:	1
 License:	GPL v2 + exceptions
 Group:		Fonts
-Source0:	https://fedorahosted.org/releases/l/i/liberation-fonts/liberation-fonts-%{version}.tar.gz
-# Source0-md5:	29e1482c6e568503138f7420597e635d
+#Source0Download: https://github.com/liberationfonts/liberation-1.7-fonts/releases
+Source0:	https://github.com/liberationfonts/liberation-1.7-fonts/files/2175696/liberation-fonts-%{version}.tar.gz
+# Source0-md5:	341038c2ebfbf0ce54954556e7696d3b
 Source1:	liberation-fonts-mono.conf
 Source2:	liberation-fonts-sans.conf
 Source3:	liberation-fonts-serif.conf
-Source4:	liberation-fonts-narrow.conf
-URL:		https://fedorahosted.org/liberation-fonts/
+URL:		https://github.com/liberationfonts/liberation-1.7-fonts
 BuildRequires:	fontforge >= 20090923
-BuildRequires:	fonttools
 Requires(post,postun):	fontpostinst
 Requires:	%{_fontsdir}/TTF
+Suggests:	fonts-TTF-RedHat-liberation-narrow
 Obsoletes:	liberation-fonts-ttf
-Obsoletes:	fonts-TTF-RedHat-liberation
+Obsoletes:	fonts-TTF-RedHat-liberation < 2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,7 +48,8 @@ Bitstream Vera Sans Mono).
 
 %build
 %{__make}
-mv liberation-fonts-ttf-%{version}/* .
+
+%{__mv} liberation-fonts-ttf-%{version}/* .
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -59,12 +60,10 @@ cp -p *.ttf $RPM_BUILD_ROOT%{_ttffontsdir}
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/59-liberation-mono.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/59-liberation-sans.conf
 cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/59-liberation-serif.conf
-cp -p %{SOURCE4} $RPM_BUILD_ROOT%{_datadir}/fontconfig/conf.avail/59-liberation-narrow.conf
 
 ln -s %{_datadir}/fontconfig/conf.avail/59-liberation-mono.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 ln -s %{_datadir}/fontconfig/conf.avail/59-liberation-sans.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 ln -s %{_datadir}/fontconfig/conf.avail/59-liberation-serif.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
-ln -s %{_datadir}/fontconfig/conf.avail/59-liberation-narrow.conf $RPM_BUILD_ROOT%{_sysconfdir}/fonts/conf.d
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,10 +76,13 @@ fontpostinst TTF
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog License.txt README TODO
+%doc AUTHORS ChangeLog License.txt README.rst TODO
 %{_ttffontsdir}/LiberationMono-*.ttf
 %{_ttffontsdir}/LiberationSans-*.ttf
 %{_ttffontsdir}/LiberationSerif-*.ttf
-%{_ttffontsdir}/LiberationSansNarrow-*.ttf
-%{_datadir}/fontconfig/conf.avail/59-liberation-*.conf
-%{_sysconfdir}/fonts/conf.d/59-liberation-*.conf
+%{_datadir}/fontconfig/conf.avail/59-liberation-mono.conf
+%{_datadir}/fontconfig/conf.avail/59-liberation-sans.conf
+%{_datadir}/fontconfig/conf.avail/59-liberation-serif.conf
+%{_sysconfdir}/fonts/conf.d/59-liberation-mono.conf
+%{_sysconfdir}/fonts/conf.d/59-liberation-sans.conf
+%{_sysconfdir}/fonts/conf.d/59-liberation-serif.conf
