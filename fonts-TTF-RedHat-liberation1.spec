@@ -2,7 +2,7 @@ Summary:	Fonts to replace commonly used Microsoft Windows Fonts
 Summary(pl.UTF-8):	Fonty zastępujące popularne fonty z Microsoft Windows
 Name:		fonts-TTF-RedHat-liberation1
 Version:	1.07.5
-Release:	1
+Release:	2
 License:	GPL v2 + exceptions
 Group:		Fonts
 #Source0Download: https://github.com/liberationfonts/liberation-1.7-fonts/releases
